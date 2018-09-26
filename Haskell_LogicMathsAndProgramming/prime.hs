@@ -26,3 +26,13 @@ mnmInt (x:xs) = min x (mnmInt xs)
 min' :: Int -> Int -> Int
 min' x y | x <= y    = x
          | otherwise = y
+
+mxmInt :: [Int] -> Int
+mxmInt []     = error "empty list"
+mxmInt [x]    = x
+mxmInt (x:xs) = max x (mxmInt xs) 
+
+removeFst _ [] = []
+removeFst x (y:ys) | x == y    = ys
+                   | otherwise = y : removeFst x ys
+
