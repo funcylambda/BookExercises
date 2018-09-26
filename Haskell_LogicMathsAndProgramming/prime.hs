@@ -32,7 +32,23 @@ mxmInt []     = error "empty list"
 mxmInt [x]    = x
 mxmInt (x:xs) = max x (mxmInt xs) 
 
+removeFst :: Int -> [Int] -> [Int]
 removeFst _ [] = []
 removeFst x (y:ys) | x == y    = ys
                    | otherwise = y : removeFst x ys
 
+srtInts :: [Int] -> [Int]
+srtInts [] = []
+srtInts xs = m : (srtInts (removeFst m xs)) where m = mnmInt xs
+
+average :: [Int] -> Rational
+average [] = error "empty list"
+average xs = toRational (sum xs) / toRational (length xs)
+
+sum' :: [Int] -> Int
+sum' []     = 0
+sum' (x:xs) = x + sum' xs
+
+length' :: [a] -> Int
+length' []     = 0
+length' (x:xs) = 1 + length' xs
